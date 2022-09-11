@@ -1,4 +1,4 @@
-# fitpot
+# Property Admin
 
 ## Project setup
 ```
