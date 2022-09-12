@@ -246,7 +246,7 @@ export const addBroker = {
         this.item_s = response.data.resultData;
 
         console.log("item_s--------->" , this.item_s);
-       
+        
         const { broker_association_id, specialization_id, capability_id, province_id, ...rest } = response.data.resultData[0]
 
         const _res = {

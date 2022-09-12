@@ -199,7 +199,6 @@ export const home = {
           icon: "mdi-chevron-double-right",
           to: "/home/reports/brokers",
         },
-
         {
           text: "Broker Associations",
           icon: "mdi-chevron-double-right",
@@ -215,7 +214,21 @@ export const home = {
           icon: "mdi-chevron-double-right",
           to: "/home/reports/property-based-broker",
         },
-        
+        {
+          text: "Agency linked Broker",
+          icon: "mdi-chevron-double-right",
+          to: "/home/permission/role-permission-list",
+        },
+        {
+          text: "Broker Linked Broker Associations",
+          icon: "mdi-chevron-double-right",
+          to: "/home/reports/broker-linked-broker-associations",
+        },
+        {
+          text: "Sellers",
+          icon: "mdi-chevron-double-right",
+          to: "/home/reports/sellers",
+        },
         {
           text: "User List",
           icon: "mdi-chevron-double-right",
@@ -226,8 +239,26 @@ export const home = {
           icon: "mdi-chevron-double-right",
           to: "/home/reports/user-to-activated",
         },
-        
-      
+        {
+          text: "Individuals",
+          icon: "mdi-chevron-double-right",
+          to: "/home/reports/individuals",
+        },
+        {
+          text: "Properties",
+          icon: "mdi-chevron-double-right",
+          to: "/home/permission/role-permission-list",
+        },
+        {
+          text: "User based Property",
+          icon: "mdi-chevron-double-right",
+          to: "/home/permission/role-permission-list",
+        },
+        {
+          text: "List of Open/Pending Properties",
+          icon: "mdi-chevron-double-right",
+          to: "/home/permission/role-permission-list",
+        },
       ],
       //#region - Theme Data
       isDarkMode: false,

@@ -472,6 +472,36 @@ const router = new Router({
             requiresAuth: true,
           },
         },
+        //Sellers
+        {
+          path: "reports/sellers",
+          component: require("../views/reports/sellers/Sellers.vue")
+            .default,
+          name: "Sellers",
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        //Broker linked Broker Associations
+        {
+          path: "reports/broker-linked-broker-associations",
+          component: require("../views/reports/brokerLinkedBrokerAssociations/BrokerLinkedBrokerAssociations.vue")
+            .default,
+          name: "Broker Linked Broker Associations",
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        //Individuals
+        {
+          path: "reports/individuals",
+          component: require("../views/reports/individuals/Individuals.vue")
+            .default,
+          name: "Individuals",
+          meta: {
+            requiresAuth: true,
+          },
+        },
         //Property Based Broker
         {
           path: "reports/property-based-broker",
