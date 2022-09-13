@@ -245,6 +245,11 @@ export const home = {
           to: "/home/reports/individuals",
         },
         {
+          text: "Sold Rent",
+          icon: "mdi-chevron-double-right",
+          to: "/home/reports/sold-rent",
+        },
+        {
           text: "Properties",
           icon: "mdi-chevron-double-right",
           to: "/home/permission/role-permission-list",

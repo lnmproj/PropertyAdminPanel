@@ -502,6 +502,16 @@ const router = new Router({
             requiresAuth: true,
           },
         },
+         //Sold Rent
+         {
+          path: "reports/sold-rent",
+          component: require("../views/reports/soldRent/SoldRent.vue")
+            .default,
+          name: "Sold Rent",
+          meta: {
+            requiresAuth: true,
+          },
+        },
         //Property Based Broker
         {
           path: "reports/property-based-broker",
