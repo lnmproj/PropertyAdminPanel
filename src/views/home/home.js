@@ -255,9 +255,9 @@ export const home = {
           to: "/home/permission/role-permission-list",
         },
         {
-          text: "User based Property",
+          text: "User Count Property",
           icon: "mdi-chevron-double-right",
-          to: "/home/permission/role-permission-list",
+          to: "/home/reports/user-count-property",
         },
         {
           text: "List of Open/Pending Properties",

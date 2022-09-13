@@ -503,11 +503,21 @@ const router = new Router({
           },
         },
          //Sold Rent
-         {
+        {
           path: "reports/sold-rent",
           component: require("../views/reports/soldRent/SoldRent.vue")
             .default,
           name: "Sold Rent",
+          meta: {
+            requiresAuth: true,
+          },
+        },
+         //User Count Property
+         {
+          path: "reports/user-count-property",
+          component: require("../views/reports/userCountProperty/UserCountProperty.vue")
+            .default,
+          name: "User Count Property",
           meta: {
             requiresAuth: true,
           },

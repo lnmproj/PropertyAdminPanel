@@ -51,20 +51,7 @@ export const brokers = {
                     sortable: true,
                     align: "start",
                 },
-                {
-                    text: "Broker Association Name",
-                    value: "broker_association_name",
-                    width: "15%",
-                    sortable: true,
-                    align: "start",
-                },
-                {
-                    text: "Contact Person",
-                    value: "contact_person",
-                    width: "20%",
-                    sortable: true,
-                    align: "start",
-                },
+   
                 
             ],
             show: false,
@@ -84,8 +71,7 @@ export const brokers = {
                 email_address: "email_address",
                 Phone: "phone_1",
                 broker_license_number: "broker_license_number",
-                broker_association_name: "broker_association_name",
-                contact_person: "contact_person",
+             
                 
                 
                 
