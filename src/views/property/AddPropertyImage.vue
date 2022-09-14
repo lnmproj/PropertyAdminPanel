@@ -25,7 +25,6 @@
           </v-list-item>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-       
       </v-row>
 
       <v-row class="ml-4 mr-4 mt-1 mb-4">
@@ -94,7 +93,7 @@
                                 dense
                                 show-size
                                 accept=".jpg,.png,.jpeg"
-                                :rules="imageRule"
+                                :rules="validationRulesRequired"
                               >
                                 <template v-slot:selection="{ index, text }">
                                   <v-chip
@@ -207,7 +206,11 @@
                       </v-img>
 
                       <v-card-actions>
-                        <v-btn icon v-if="card.isDefault == 0">
+                        <v-btn
+                          icon
+                          v-if="card.isDefault == 0 && card.type == 'Image'"
+                          @click="makeDefault(card)"
+                        >
                           <v-icon>mdi-bookmark-check</v-icon>
                         </v-btn>
                         <v-spacer></v-spacer>
@@ -219,7 +222,10 @@
                           <v-icon color="info">mdi-video</v-icon>
                         </v-btn>
 
-                        <v-btn icon v-if="card.isDefault == 1">
+                        <v-btn
+                          icon
+                          v-if="card.isDefault == 1 && card.type == 'Image'"
+                        >
                           <v-icon color="success"
                             >mdi-check-circle-outline</v-icon
                           >
@@ -263,15 +269,14 @@
                     ></v-autocomplete>
                   </v-col>
                   <v-col>
-                 
                     <v-btn
-          :disabled="isLoaderActive"
-          class="white--text primary-button mx-0 d-none d-md-block mr-4 mt-4"
-         @click="saveAmeneties"
-        >
-         Save Ameneties
-          <v-icon right dark> mdi-plus </v-icon>
-        </v-btn>
+                      :disabled="isLoaderActive"
+                      class="white--text primary-button mx-0 d-none d-md-block mr-4 mt-4"
+                      @click="saveAmeneties"
+                    >
+                      Save Ameneties
+                      <v-icon right dark> mdi-plus </v-icon>
+                    </v-btn>
                   </v-col>
                 </v-row>
               </v-container>

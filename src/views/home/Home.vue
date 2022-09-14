@@ -84,7 +84,7 @@
           <v-list-group prepend-icon="mdi-home-city" :value="false">
             <template v-slot:activator>
               <v-list-item-content>
-                <v-list-item-title>Peoperty</v-list-item-title>
+                <v-list-item-title>Property</v-list-item-title>
               </v-list-item-content>
             </template>
             <v-list-item

@@ -1,4 +1,4 @@
-import { mapActions, mapGetters } from "vuex";
+
 import { Global } from "../../helpers/global";
 import { validationMixin } from "../../mixins/validationMixin.js";
 import { ApiService } from "../../helpers/apiService";
@@ -102,29 +102,7 @@ export const property = {
              });
            },
 
-           // enable disable Property
-           async enableDisableProperty(item) {
-             const result = await Global.showConfirmationAlert(
-               `Change ${this.entity} : ${item.name} Status`,
-               "Are you sure to change the status",
-               "warning"
-             );
-             if (result.isConfirmed) {
-               let payload = {
-                 roleName: item.name,
-                 roleId: item.id,
-                 isRoleActive: item.is_role_active == "Active" ? 1 : 0,
-               };
-               await this.actionEnableDisableRole(payload);
-               this.getRoles();
-             } else {
-               if (item.is_role_active == "Inactive") {
-                 item.is_role_active = "Active";
-               } else {
-                 item.is_role_active = "Inactive";
-               }
-             }
-           },
+          
 
            // Show Agent Phone Number
            async showAgentPhoneNumber(item) {

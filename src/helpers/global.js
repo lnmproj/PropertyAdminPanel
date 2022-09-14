@@ -78,6 +78,7 @@ export const Global = {
   profilePicKey: "profilePicKey",
   userId: "userId",
   roleName: "roleName",
+  roleId: "roleId",
 
   //Global props
   CompanyName: "RealEstateList.ph",

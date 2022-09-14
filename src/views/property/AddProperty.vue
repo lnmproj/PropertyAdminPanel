@@ -1,7 +1,7 @@
 <template>
   <!-- Card Start -->
   <v-container fluid class="pa-4 mb-8">
-    <v-overlay :value="isDialogLoaderActive" color="primary">
+    <v-overlay :value="isLoaderActive" color="primary">
       <v-progress-circular
         indeterminate
         size="50"
@@ -53,29 +53,37 @@
                 </div>
               </v-expansion-panel-header>
               <v-expansion-panel-content eager>
-                 <v-row class="mt-4">
-                    <v-col cols="12">
-                 <v-autocomplete
+                <v-row class="mt-4">
+                  <v-col cols="12">
+                    <v-autocomplete
                       v-model="agentId"
                       :items="agentItems"
                       label="Agent"
                       item-text="full_name"
                       item-value="user_id"
                       dense
-                        :rules="validationRulesRequired"
-                        :disabled="isItemLoading"
-                    ></v-autocomplete>
-                    </v-col>
-                 </v-row>
-                <v-row >
-                  <v-col cols="12">
-                    <v-text-field
-                      dense
-                      label="Seller Name"
-                      v-model="sellerName"
                       :rules="validationRulesRequired"
-                      hide-details="auto"
-                    ></v-text-field>
+                    ></v-autocomplete>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="6">
+                    <v-autocomplete
+                      v-model="sellerId"
+                      :items="sellerItems"
+                      label="Select Seller"
+                      item-text="seller_name"
+                      item-value="seller_id"
+                      dense
+                    ></v-autocomplete>
+                  </v-col>
+                  <v-col cols="6">
+                    <v-autocomplete
+                      v-model="isFeatured"
+                      :items="featureItems"
+                      label="Featured Property"
+                      dense
+                    ></v-autocomplete>
                   </v-col>
                 </v-row>
                 <v-row>
@@ -178,16 +186,16 @@
                   </v-col>
                 </v-row>
 
-                <v-row>
+                <v-row v-if="propertyClassification == 3">
                   <v-col cols="3">
-                    <v-switch
-                      class="p-0 m-0"
+                    <v-autocomplete
+                      v-model="agryId"
+                      :items="agryItems"
+                      label="Select Agri Type"
+                      item-text="agri_type_name"
+                      item-value="agri_type_id"
                       dense
-                      color="primary"
-                      v-model="agryType"
-                      flat
-                      label="Agry Type"
-                    ></v-switch>
+                    ></v-autocomplete>
                   </v-col>
                 </v-row>
               </v-expansion-panel-content>
@@ -246,7 +254,6 @@
 
                   <v-col cols="4">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="town"
                       :items="townItems"
                       item-text="town_name"
@@ -260,7 +267,6 @@
                   </v-col>
                   <v-col cols="4">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="province"
                       :items="provinceItems"
                       item-text="province_name"
@@ -278,7 +284,6 @@
                 <v-row>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="barangay"
                       :items="barangayItems"
                       item-text="barangay_name"
@@ -293,7 +298,6 @@
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="subdivision"
                       :items="subdivisionItems"
                       item-text="subdivision_name"
@@ -344,7 +348,6 @@
                 <v-row class="mt-4">
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="numberBedrooms"
                       :items="numberBedroomsItems"
                       dense
@@ -356,7 +359,6 @@
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="numberToilets"
                       :items="numberToiletsItems"
                       dense
@@ -368,7 +370,6 @@
                   </v-col>
                   <v-col cols="6">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="carSpacesUncovered"
                       :items="carSpacesUncoveredItems"
                       dense
@@ -381,9 +382,8 @@
                 </v-row>
 
                 <v-row>
-                  <v-col cols="4">
+                  <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="garageSpacesCovered"
                       :items="garageSpacesCoveredItems"
                       dense
@@ -406,17 +406,27 @@
                   <v-col cols="3">
                     <v-text-field
                       dense
-                      label="lLatitude"
+                      label="Latitude"
                       v-model="latitude"
                       :rules="validationRulesRequired"
                       hide-details="auto"
                     ></v-text-field>
                   </v-col>
+                  <v-col cols="3">
+                    <v-autocomplete
+                      v-model="furnishing"
+                      :items="furnishingItems"
+                      dense
+                      chips
+                      small-chips
+                      label="Select Furnishing"
+                    ></v-autocomplete>
+                  </v-col>
                 </v-row>
               </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel>
+            <v-expansion-panel v-if="productCategory == 1">
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
                   <v-icon color="success" class="mr-4"
@@ -438,7 +448,6 @@
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="minimumRentalPeriod"
                       :items="minimumRentalPeriodItems"
                       dense
@@ -450,19 +459,17 @@
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="maximumRentalPeriod"
                       :items="maximumRentalPeriodItems"
                       dense
                       chips
                       :rules="validationRulesRequired"
                       small-chips
-                      label="Car Spaces Uncovered"
+                      label="Maximum Rental Period"
                     ></v-autocomplete>
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="dayMonthRentDue"
                       :items="dayMonthRentDueItems"
                       dense
@@ -476,7 +483,6 @@
                 <v-row>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="periodCanExtend"
                       :items="periodCanExtendItems"
                       dense
@@ -630,7 +636,7 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
 
-            <v-expansion-panel>
+            <v-expansion-panel v-if="productCategory == 3">
               <v-expansion-panel-header class="grey lighten-4">
                 <div>
                   <v-icon color="success" class="mr-4"
@@ -662,14 +668,13 @@
                   </v-col>
                   <v-col cols="3">
                     <v-autocomplete
-                      :disabled="isItemLoading"
                       v-model="productMode"
                       :items="productModeItems"
                       dense
                       chips
                       :rules="validationRulesRequired"
                       small-chips
-                      label="Minimum Rental Period"
+                      label="Product Mode"
                     ></v-autocomplete>
                   </v-col>
                   <v-col cols="3">
@@ -822,7 +827,6 @@
                         hide-details
                       ></v-checkbox>
                     </v-col>
-                   
                   </v-row>
                 </v-container>
               </v-expansion-panel-content>

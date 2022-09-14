@@ -38,6 +38,7 @@ const actions = {
           secureLS.set(Global.fullNameKey, response.data.userData.full_name);
           secureLS.set(Global.userId, response.data.userData.user_id);
           secureLS.set(Global.roleName, response.data.roleData[0].name);
+          secureLS.set(Global.roleId, response.data.roleData[0].role_id);
 
           commit(types.IS_LOGGED_IN, true);
           router.push({

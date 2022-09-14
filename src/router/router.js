@@ -334,17 +334,9 @@ const router = new Router({
           meta: {
             requiresAuth: true,
           },
+          props:true
         },
-    //Add Property Image
-    {
-      path: "Property/add-property-image",
-      component: require("../views/property/AddPropertyImage.vue").default,
-      name: "AddPropertyImage",
-      meta: {
-        requiresAuth: true,
-      },
-      props: true,
-    },
+ 
     //Edit Property
     {
       path: "Property/edit-property",
