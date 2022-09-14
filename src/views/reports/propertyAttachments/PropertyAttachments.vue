@@ -84,6 +84,18 @@
               </v-btn>
             </v-toolbar>
           </template>
+
+          <template v-slot:item.images_video="{ item }">
+            <v-avatar>
+            <img
+              
+              inset
+              dense
+              max-height="50"
+              max-width="50"
+              :src= "'https://mgtspe.dreamplesk.com/public/uploads/featuredproperty/images/' + item.images_video"            >
+            </v-avatar>
+          </template>
         </v-data-table>
       </transition>
 

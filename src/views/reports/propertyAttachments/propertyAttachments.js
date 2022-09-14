@@ -40,7 +40,7 @@ export const propertyAttachments = {
                 {
                     text: "Property Name",
                     value: "property_name",
-                    width: "15%",
+                    width: "20%",
                     sortable: false,
                     align: "start",
                 },
@@ -54,7 +54,7 @@ export const propertyAttachments = {
                 {
                     text: "Images Video",
                     value: "images_video",
-                    width: "25%",
+                    width: "20%",
                     sortable: false,
                     align: "end",
                 },
