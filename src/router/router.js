@@ -524,6 +524,26 @@ const router = new Router({
             requiresAuth: true,
           },
         },
+         //List of Open/Pending Properties
+         {
+          path: "reports/open-pending",
+          component: require("../views/reports/openPending/OpenPending.vue")
+            .default,
+          name: "List of Open/Pending Properties",
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        //Property Attachments
+        {
+          path: "reports/property-attachments",
+          component: require("../views/reports/propertyAttachments/PropertyAttachments.vue")
+            .default,
+          name: "Property Attachments",
+          meta: {
+            requiresAuth: true,
+          },
+        },
 
 
         //--------------------------- REPORTS End ------------------------------------------

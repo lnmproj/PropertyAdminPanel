@@ -1,7 +1,7 @@
 import { Global } from "../../../helpers/global";
 import { validationMixin } from "../../../mixins/validationMixin.js";
 import { ApiService } from "../../../helpers/apiService";
-export const propertyBasedBroker = {
+export const openPending = {
     props: ["userPermissionDataProps"],
     mixins: [validationMixin],
     data() {
@@ -33,21 +33,35 @@ export const propertyBasedBroker = {
                 {
                     text: "Agent Name",
                     value: "agent_name",
-                    width: "20%",
+                    width: "15%",
                     sortable: false,
                     align: "start",
                 },
                 {
                     text: "Broker Associated",
                     value: "broker_associated",
-                    width: "20%",
+                    width: "15%",
                     sortable: false,
                     align: "start",
                 }, 
                 {
                     text: "Property Name",
                     value: "property_name",
-                    width: "20%",
+                    width: "15%",
+                    sortable: false,
+                    align: "start",
+                },
+                {
+                    text: "months",
+                    value: "months",
+                    width: "15%",
+                    sortable: false,
+                    align: "start",
+                },
+                {
+                    text: "Pending Month",
+                    value: "pending",
+                    width: "15%",
                     sortable: false,
                     align: "start",
                 },
@@ -65,7 +79,7 @@ export const propertyBasedBroker = {
             userSkills: null,
             pagination: {},
             module: "Reports",
-            entity: "Property Based Broker",
+            entity: "List of Open/Pending Properties",
             
 
             // search
@@ -77,10 +91,12 @@ export const propertyBasedBroker = {
                 agent_name: "agent_name",
                 broker_associated: "broker_associated",
                 property_name: "property_name",
+                months:"months",
+                pending:"pending",
                 status: "status",   
             },
             excelFileName:
-                "PropertyBasedBroker" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+                "ListofOpen/PendingProperties" + "_" + moment().format("DD/MM/YYYY") + ".xls",
             //end
         };
     },
@@ -119,7 +135,7 @@ export const propertyBasedBroker = {
                 page: page,
             };
             this.isLoaderActive = true;
-            ApiService.get("getPropertyBrokerReport", payload)
+            ApiService.get("getOpenPendingPropertyReport", payload)
                 .then((response) => {
                     this.isLoaderActive = false;
 

@@ -250,9 +250,9 @@ export const home = {
           to: "/home/reports/sold-rent",
         },
         {
-          text: "Properties",
+          text: "Property attachments",
           icon: "mdi-chevron-double-right",
-          to: "/home/permission/role-permission-list",
+          to: "/home/reports/property-attachments",
         },
         {
           text: "User Count Property",
@@ -262,7 +262,7 @@ export const home = {
         {
           text: "List of Open/Pending Properties",
           icon: "mdi-chevron-double-right",
-          to: "/home/permission/role-permission-list",
+          to: "/home/reports/open-pending",
         },
       ],
       //#region - Theme Data

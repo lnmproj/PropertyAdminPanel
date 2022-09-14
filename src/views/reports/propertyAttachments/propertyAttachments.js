@@ -1,7 +1,7 @@
 import { Global } from "../../../helpers/global";
 import { validationMixin } from "../../../mixins/validationMixin.js";
 import { ApiService } from "../../../helpers/apiService";
-export const propertyBasedBroker = {
+export const propertyAttachments = {
     props: ["userPermissionDataProps"],
     mixins: [validationMixin],
     data() {
@@ -38,23 +38,23 @@ export const propertyBasedBroker = {
                     align: "start",
                 },
                 {
-                    text: "Broker Associated",
-                    value: "broker_associated",
+                    text: "Property Name",
+                    value: "property_name",
+                    width: "15%",
+                    sortable: false,
+                    align: "start",
+                },
+                {
+                    text: "Type",
+                    value: "type",
                     width: "20%",
                     sortable: false,
                     align: "start",
                 }, 
                 {
-                    text: "Property Name",
-                    value: "property_name",
-                    width: "20%",
-                    sortable: false,
-                    align: "start",
-                },
-                {
-                    text: "Status",
-                    value: "status",
-                    width: "15%",
+                    text: "Images Video",
+                    value: "images_video",
+                    width: "25%",
                     sortable: false,
                     align: "end",
                 },
@@ -65,7 +65,7 @@ export const propertyBasedBroker = {
             userSkills: null,
             pagination: {},
             module: "Reports",
-            entity: "Property Based Broker",
+            entity: "List of Property Attachments",
             
 
             // search
@@ -75,12 +75,12 @@ export const propertyBasedBroker = {
             excelFields: {
                 seller_name: "seller_name",
                 agent_name: "agent_name",
-                broker_associated: "broker_associated",
                 property_name: "property_name",
-                status: "status",   
+                type:"type",
+                images_video:"images_video",   
             },
             excelFileName:
-                "PropertyBasedBroker" + "_" + moment().format("DD/MM/YYYY") + ".xls",
+                "ListofPropertyAttachments" + "_" + moment().format("DD/MM/YYYY") + ".xls",
             //end
         };
     },
@@ -119,7 +119,7 @@ export const propertyBasedBroker = {
                 page: page,
             };
             this.isLoaderActive = true;
-            ApiService.get("getPropertyBrokerReport", payload)
+            ApiService.get("getListOfAttachments", payload)
                 .then((response) => {
                     this.isLoaderActive = false;
 

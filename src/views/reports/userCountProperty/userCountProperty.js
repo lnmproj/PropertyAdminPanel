@@ -80,6 +80,11 @@ export const userCountProperty = {
     created() {
         // To get Details in List
         this.getDetails();
+    },
+    //#endregion
+
+    //#region mounted
+    mounted() {
         this.getUserTypeItemWithoutPagination();
     },
     //#endregion
@@ -119,7 +124,7 @@ export const userCountProperty = {
                     : sortBy[0];
             ApiService.get("getCountOfPropertiesReport", {
                 user_id: secureLS.get(Global.userId),
-                // user_id:119,
+                user_type: this.item.role_id,
                 itemsPerPage: itemsPerPage,
                 sortColumn: sortBy,
                 sortOrder: sortDesc,
