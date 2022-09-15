@@ -109,7 +109,6 @@
                       </v-btn>
 
                       <v-btn
-                        v-if="false"
                         color="info"
                         class="white--text"
                         fab

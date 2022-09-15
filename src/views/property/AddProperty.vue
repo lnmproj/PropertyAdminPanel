@@ -187,13 +187,25 @@
                 </v-row>
 
                 <v-row v-if="propertyClassification == 3">
-                  <v-col cols="3">
+                  <v-col cols="4">
                     <v-autocomplete
                       v-model="agryId"
                       :items="agryItems"
                       label="Select Agri Type"
                       item-text="agri_type_name"
                       item-value="agri_type_id"
+                      dense
+                    ></v-autocomplete>
+                  </v-col>
+
+                  <v-col cols="4">
+                    <v-autocomplete
+                    v-if="propertyDataProps!=null"
+                      v-model="status"
+                      :items="statusItems"
+                      label="Select Status"
+                      item-text="text"
+                      item-value="value"
                       dense
                     ></v-autocomplete>
                   </v-col>

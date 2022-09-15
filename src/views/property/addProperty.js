@@ -4,7 +4,7 @@ import { ApiService } from "../../helpers/apiService";
 import SecureLS from "secure-ls";
 var secureLS = new SecureLS({ encodingType: "aes" });
 export const addProperty = {
-         props: ["userPermissionDataProps"],
+         props: ["userPermissionDataProps", "propertyDataProps"],
          mixins: [validationMixin],
          data() {
            return {
@@ -12,89 +12,224 @@ export const addProperty = {
              isLoaderActive: false,
              pnlSettings: null,
              // Basic Information
-             agentId: null,
+             agentId:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.agent_id
+                 : null,
              agentItems: [],
 
-             sellerId: null,
+             sellerId:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.seller_id
+                 : null,
              sellerItems: null,
 
-             isFeatured: null,
+             isFeatured:
+               this.propertyDataProps != null
+                 ?this.propertyDataProps.isFeatured=="1"?"Yes":"No"
+                 : null,
              featureItems: ["Yes", "No"],
              furnishing: null,
 
-             priceAsked: null,
-             landArea: null,
-             propertyDescription: null,
-             propertyHeadline: null,
-             propertyName: null,
-             buildingArea: null,
-             productCategory: null,
-             propertyClassification: null,
-             propertyType: null,
-             agryId: null,
+             priceAsked:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.price_asked
+                 : null,
+             landArea:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.land_area
+                 : null,
+             propertyDescription:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.property_description
+                 : null,
+             propertyHeadline:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.property_headline
+                 : null,
+             propertyName:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.property_name
+                 : null,
+             buildingArea:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.building_area
+                 : null,
+             productCategory:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.product_category_id
+                 : null,
+             propertyClassification:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.property_classification_id
+                 : null,
+             propertyType:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.property_type_id
+                 : null,
+             agryId:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.agri_type
+                 : null,
              agryItems: [],
 
              selectDate: null,
              //Address
-             unitNumber: null,
-             houseLotNumber: null,
-             streetName: null,
-             propertyBuildingName: null,
-             subdivision: null,
-             barangay: null,
-             town: null,
-             province: null,
-             zipCode: null,
-             floorLevel: null,
-             subdivision: null,
-             agencyCapabilities: null,
-             agencyProvinces: null,
+             unitNumber:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.unit_no
+                 : null,
+             houseLotNumber:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.house_lot_no
+                 : null,
+             streetName:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.street_name
+                 : null,
+             propertyBuildingName:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.property_building_name
+                 : null,
+             subdivision:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.subdivision_id
+                 : null,
+             barangay:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.barangay_id
+                 : null,
+             town:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.town_id
+                 : null,
+             province:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.province_id
+                 : null,
+             zipCode:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.zipcode
+                 : null,
+             floorLevel:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.select_floor_level
+                 : null,
+
              //Property Type
-             numberBedrooms: null,
-             numberToilets: null,
-             carSpacesUncovered: null,
-             garageSpacesCovered: null,
-         
-             longitude: null,
-             latitude: null,
+             numberBedrooms:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.no_bedrooms
+                 : null,
+             numberToilets:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.no_toilets
+                 : null,
+             carSpacesUncovered:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.car_spaces_uncovered_property
+                 : null,
+             garageSpacesCovered:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.garage_spaces_covered_property
+                 : null,
+
+             longitude:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.longitude
+                 : null,
+             latitude:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.latitude
+                 : null,
 
              //For Rent
-             rentalPriceAsked: null,
-             minimumRentalPeriod: null,
-             maximumRentalPeriod: null,
-             dayMonthRentDue: null,
-             periodCanExtend: null,
+             rentalPriceAsked:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.rental_price_asked
+                 : null,
+             minimumRentalPeriod:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.minimum_rental_period_rent
+                 : null,
+             maximumRentalPeriod:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.car_spaces_rent
+                 : null,
+             dayMonthRentDue:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.date_of_month_rent_due
+                 : null,
+             periodCanExtend:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.period_can_extend
+                 : null,
              picker: null,
-             currentRentalExpires: new Date(
-               Date.now() - new Date().getTimezoneOffset() * 60000
-             )
-               .toISOString()
-               .substr(0, 10),
+             currentRentalExpires:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.current_rental_expires
+                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                     .toISOString()
+                     .substr(0, 10),
              menuCurrentRentalExpires: false,
              menuDateRentalStarted: false,
-             dateRentalStarted: new Date(
-               Date.now() - new Date().getTimezoneOffset() * 60000
-             )
-               .toISOString()
-               .substr(0, 10),
+             dateRentalStarted:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.date_rental_started
+                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                     .toISOString()
+                     .substr(0, 10),
              menuRentalSwitchOn: false,
-             rentalSwitchOn: new Date(
-               Date.now() - new Date().getTimezoneOffset() * 60000
-             )
-               .toISOString()
-               .substr(0, 10),
+             rentalSwitchOn:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.rental_switch_on
+                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                     .toISOString()
+                     .substr(0, 10),
 
              //Sale
-             salePriceAsked: null,
-             pricePerSqm: null,
-             productMode: null,
+             salePriceAsked:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.sale_price
+                 : null,
+             pricePerSqm:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.price_per_sq_m
+                 : null,
+             productMode:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.minimum_rental_period_sale
+                 : null,
              //Items
              propertyClassificationItems: [],
              productCategoryItems: [],
              propertyTypeItems: [],
              floorLevelItems: ["Basement", "Ground", "First", "Second"],
              agencyProvinceItems: [],
-             agencyCapabilitiesItems: [],
+
+             statusItems: [
+              {
+                "text": "Open",
+                "value": "Open"
+              },
+              {
+                "text": "Sold",
+                "value": "Sold"
+              },
+              {
+                "text": "Pending",
+                "value": "Pending"
+              },
+              {
+                "text": "Archived",
+                "value": "Archived"
+              },
+              {
+                "text": "Suspended",
+                "value": "Suspended"
+              },
+             ],
+
              townItems: [],
              provinceItems: [],
              barangayItems: [],
@@ -119,11 +254,12 @@ export const addProperty = {
              periodCanExtendItems: Global.yesNo,
              //Sale
              productModeItems: ["Newly Built", "Renovated", "For Resale"],
-             saleSwitchOn: new Date(
-               Date.now() - new Date().getTimezoneOffset() * 60000
-             )
-               .toISOString()
-               .substr(0, 10),
+             saleSwitchOn:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.sale_switch_on
+                 : new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+                     .toISOString()
+                     .substr(0, 10),
              menuSaleSwitchOn: false,
              //Details & Features
              heatingTypeItems: ["Forced Air"],
@@ -131,15 +267,42 @@ export const addProperty = {
              kitchenFeaturesItems: ["Modern Kitchen"],
              coolingItems: ["Central AC"],
 
-             garage: false,
-             cooling: null,
-             heatingtype: null,
-             elevator: false,
-             freewifi: false,
-             exteriour: null,
-             kitchen: null,
-             fireplace: false,
-             swimmingPool: false,
+             garage:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.garage
+                 : false,
+             cooling:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.cooling
+                 : null,
+             heatingtype:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.heatingtype
+                 : null,
+             elevator:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.elevator
+                 : false,
+             freewifi:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.freewifi
+                 : false,
+             exteriour:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.exteriour
+                 : null,
+             kitchen:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.kitchen
+                 : null,
+             fireplace:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.fireplace
+                 : false,
+             swimmingPool:
+               this.propertyDataProps != null
+                 ? this.propertyDataProps.swimming_pool
+                 : false,
 
              tab: null,
 
@@ -182,6 +345,13 @@ export const addProperty = {
 
            //get agri type
            this.getAgriType();
+           if(this.propertyDataProps!=null)
+           {
+            this.changeProvince();
+            this.changeBarangay();
+           }
+           //get Status
+           this.getStatus();
          },
 
          methods: {
@@ -343,7 +513,7 @@ export const addProperty = {
            changeProvince() {
              this.isLoaderActive = true;
              ApiService.get("GetBarangayWithoutPagination", {
-               townId: this.town,  
+               townId: this.town,
                provinceId: this.province,
              })
                .then((response) => {
@@ -386,10 +556,10 @@ export const addProperty = {
            },
 
            // add Property
-            addEditItem() {
-          console.log(this.$refs.holdingFormAddEdit.validate());
+           addEditItem() {
+             console.log(this.$refs.holdingFormAddEdit.validate());
              if (this.$refs.holdingFormAddEdit.validate()) {
-               if (this.isAddEdit) {
+               if (this.isAddEdit && this.propertyDataProps==null) {
                  // save
                  let payload = {
                    seller_id: this.sellerId,
@@ -425,7 +595,7 @@ export const addProperty = {
                    exteriour: this.exteriour,
                    kitchen: this.kitchen,
                    year: moment().format("YYYY"),
-                   isFeatured:this.isFeatured=='Yes'?1:0,
+                   isFeatured: this.isFeatured == "Yes" ? 1 : 0,
                    agent_id: this.agentId,
                    rental_price_asked: this.rentalPriceAsked,
                    minimum_rental_period_rent: this.minimumRentalPeriod,
@@ -477,15 +647,94 @@ export const addProperty = {
                      }
                    });
                } else {
-                 // update
-                 //  let payload = {
-                 //    Name: this.item.user_skills,
-                 //    Id: this.item.user_skills_id,
-                 //    isActive: this.item.user_skills_status,
-                 //    updated_by: Global.loggedInUser,
-                 //    endPoint: `Update${this.endPoint}`,
-                 //  };
-                 //  await this.actionUpdate(payload);
+                alert("ooo");
+                  let payload = {
+                    id:this.propertyDataProps.id,
+                    seller_id: this.sellerId,
+                    user_type: secureLS.get(Global.roleId),
+                    user_id: secureLS.get(Global.userId),
+                    price_asked: this.priceAsked,
+                    land_area: this.landArea,
+                    building_area: this.buildingArea,
+                    property_name: this.propertyName,
+                    property_headline: this.propertyHeadline,
+                    property_description: this.propertyDescription,
+                    property_classification_id: this.propertyClassification,
+                    property_type_id: this.propertyType,
+                    product_category_id: this.productCategory,
+                    unit_no: this.unitNumber,
+                    house_lot_no: this.houseLotNumber,
+                    street_name: this.streetName,
+                    property_building_name: this.propertyBuildingName,
+                    barangay_id: this.barangay,
+                    town_id: this.town,
+                    province_id: this.province,
+                    subdivison_id: this.subdivision,
+                    zipcode: this.zipCode,
+                    no_bedrooms: this.numberBedrooms,
+                    no_toilets: this.numberToilets,
+                    longitude: this.longitude,
+                    latitude: this.latitude,
+                    garage: this.garage ? "Yes" : "No",
+                    cooling: this.cooling,
+                    heatingtype: this.heatingtype,
+                    elevator: this.elevator ? "Yes" : "No",
+                    freewifi: this.freewifi ? "Yes" : "No",
+                    exteriour: this.exteriour,
+                    kitchen: this.kitchen,
+                    year: moment().format("YYYY"),
+                    isFeatured: this.isFeatured == "Yes" ? 1 : 0,
+                    agent_id: this.agentId,
+                    rental_price_asked: this.rentalPriceAsked,
+                    minimum_rental_period_rent: this.minimumRentalPeriod,
+                    car_spaces_rent: this.maximumRentalPeriod,
+                    date_of_month_rent_due: this.dayMonthRentDue,
+                    period_can_extend: this.periodCanExtend,
+                    date_rental_started: this.dateRentalStarted,
+                    sale_price: this.salePriceAsked,
+                    sale_switch_on: this.saleSwitchOn,
+                    price_per_sq_m: this.pricePerSqm,
+                    select_floor_level: this.floorLevel,
+                    current_rental_expires: this.currentRentalExpires,
+                    rental_switch_on: this.rentalSwitchOn,
+                    car_spaces_uncovered_property: this.carSpacesUncovered,
+                    garage_spaces_covered_property: this.garageSpacesCovered,
+                    minimum_rental_period_sale: this.productMode,
+                    fireplace: this.fireplace ? "Yes" : "No",
+                    swimming_pool: this.swimmingPool ? "Yes" : "No",
+                    created_by: secureLS.get(Global.userId),
+                    agri_type: this.agryId,
+                    furnishing: this.furnishing,
+                    status: this.status,
+                  };
+
+                  this.isLoaderActive = true;
+                  ApiService.post(`updateproperty`, payload)
+                    .then((response) => {
+                      this.isLoaderActive = false;
+
+                      Global.showSuccessAlert(
+                        true,
+                        "success",
+                        response.data.message
+                      );
+                      this.$router.push({
+                        name: "PropertyList",
+                      });
+                    })
+                    .catch((error) => {
+                      this.isLoaderActive = false;
+                      if (
+                        error.response.status != 401 ||
+                        error.response.status != 403
+                      ) {
+                        Global.showErrorAlert(
+                          true,
+                          "error",
+                          "Something went wrong"
+                        );
+                      }
+                    });
                }
              }
            },

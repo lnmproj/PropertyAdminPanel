@@ -324,6 +324,7 @@ const router = new Router({
           meta: {
             requiresAuth: true,
           },
+          props:true
         },
 
         //Add Property Image
@@ -337,16 +338,7 @@ const router = new Router({
           props:true
         },
  
-    //Edit Property
-    {
-      path: "Property/edit-property",
-      component: require("../views/property/EditProperty.vue").default,
-      name: "EditProperty",
-      meta: {
-        requiresAuth: true,
-      },
-      props: true,
-    },
+   
         //--------------------------- Property End ------------------------------------------
 
         //--------------------------- Permission Start-----------------------------------------

@@ -95,9 +95,10 @@ export const property = {
            },
 
            //Go to edit property
-           goToEditProperty() {
+           goToEditProperty(item) {
+           
              this.$router.push({
-               name: "EditProperty",
+               name: "AddProperty",
                params: { propertyDataProps: item },
              });
            },
