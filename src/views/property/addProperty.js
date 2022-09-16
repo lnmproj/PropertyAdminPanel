@@ -206,6 +206,9 @@ export const addProperty = {
              propertyTypeItems: [],
              floorLevelItems: ["Basement", "Ground", "First", "Second"],
              agencyProvinceItems: [],
+             status:  this.propertyDataProps != null
+             ? this.propertyDataProps.status
+             : null,
 
              statusItems: [
               {
@@ -647,7 +650,7 @@ export const addProperty = {
                      }
                    });
                } else {
-                alert("ooo");
+                 console.log(this.status);
                   let payload = {
                     id:this.propertyDataProps.id,
                     seller_id: this.sellerId,

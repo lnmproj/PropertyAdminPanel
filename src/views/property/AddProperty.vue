@@ -186,8 +186,8 @@
                   </v-col>
                 </v-row>
 
-                <v-row v-if="propertyClassification == 3">
-                  <v-col cols="4">
+                <v-row >
+                  <v-col cols="4" v-if="propertyClassification == 3">
                     <v-autocomplete
                       v-model="agryId"
                       :items="agryItems"
